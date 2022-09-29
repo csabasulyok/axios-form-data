@@ -25,7 +25,9 @@ function hasFileEntry(data: KeyValues): boolean {
  * so that "data" is checked on every call,
  * and where there is a file, it will use FormData to send it.
  */
-export default function axiosFormData(config: AxiosRequestConfig<KeyValues>): AxiosRequestConfig<KeyValues> | AxiosRequestConfig<FormData> {
+export default function axiosFormData(
+  config: AxiosRequestConfig<KeyValues>,
+): AxiosRequestConfig<KeyValues> | AxiosRequestConfig<FormData> {
   // return if
   // - no body
   // - body isn't an object
