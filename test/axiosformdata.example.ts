@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createReadStream } from 'fs';
-import axiosFormData from '../src/axiosformdata';
+import axiosFormData from '../src';
 
 (async () => {
   // connect axiosFormData interceptor to axios

@@ -1,6 +1,6 @@
 {
   "name": "axios-form-data",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Axios interceptor middleware to encode into form-data",
   "author": "Csaba Sulyok <csaba.sulyok@gmail.com>",
   "license": "ISC",
