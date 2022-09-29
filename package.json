@@ -1,11 +1,11 @@
 {
   "name": "axios-form-data",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Axios interceptor middleware to encode into form-data",
   "author": "Csaba Sulyok <csaba.sulyok@gmail.com>",
   "license": "ISC",
-  "types": "./dist/axiosformdata.d.ts",
-  "main": "./dist/axiosformdata.js",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "files": [
     "dist"
   ],
@@ -14,35 +14,40 @@
     "url": "git+https://github.com/csabasulyok/axios-form-data.git"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
   },
   "scripts": {
     "clean": "rimraf dist *.tsbuildinfo",
     "build": "tsc -p tsconfig.build.json",
     "cb": "pnpm clean && pnpm build",
-    "lint": "eslint 'src/**/*.{js,ts,jsx,tsx}' --quiet --fix",
-    "example": "node -r ts-node/register test/axiosformdata.example.ts"
+    "lint": "eslint 'src/**/*.ts' --quiet --fix",
+    "format": "prettier --write '**/*.ts' --config ./.prettierrc.yml",
+    "ci": "pnpm lint && pnpm format && pnpm build",
+    "publish:local": "pnpm publish --verbose --registry=http://localhost:8081/repository/npm-releases/",
+    "publish:npmjs": "pnpm publish --verbose --registry=https://registry.npmjs.org/",
+    "example": "ts-node test/axiosformdata.example.ts"
   },
   "dependencies": {
-    "auto-bind": "^4.0.0",
-    "axios": "^0.23.0",
-    "form-data": "^4.0.0"
+    "auto-bind": "4.0.0",
+    "axios": "0.27.2",
+    "form-data": "4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^16.7.1",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.24.1",
-    "eslint-plugin-prettier": "^3.4.1",
-    "nodemon": "^2.0.12",
-    "prettier": "^2.3.2",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.3.5"
+    "@types/node": "18.7.18",
+    "@typescript-eslint/eslint-plugin": "5.38.0",
+    "@typescript-eslint/parser": "5.38.0",
+    "eslint": "8.23.1",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "3.5.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "prettier": "2.7.1",
+    "rimraf": "3.0.2",
+    "ts-node": "10.9.1",
+    "typescript": "4.8.3"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
@@ -54,12 +59,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "nodemonConfig": {
-    "watch": [
-      ".env",
-      "src/*.*",
-      "test/*.*"
-    ]
   }
 }
